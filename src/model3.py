@@ -1,15 +1,14 @@
 import nltk
 import datetime
+import re
 from score import search_score
+
 SCORECHANNELS = ["score","point","grade","result"]
 TEAMCHANNELS = ["HOU","LAL","MIA","CHI","SAS","GSW","IND"]
 PLAYERCHANNELS = ["Allen Ray","Bryant Kobe","Duncan Tim","Gasol Paul"]
 INFOCHANNELS = ["information","info","something"]
 MATCHCHANNELS = ["match","game","competition","tournament"]
 DAYCHANNELS = ["yesterday","tomorrow"]
-
-
-
 
 def seg(sentence):
 	tokens = nltk.word_tokenize(sentence)
@@ -18,10 +17,11 @@ def seg(sentence):
 	
 def handle(sentence):
 	segments = seg(sentence)
-	print(segments)
+	#print(segments)
 	score = False
 	info = False
 	match =False
+	rule = False
 	day = ''
 	team = []
 	player = []
@@ -40,6 +40,8 @@ def handle(sentence):
 			player.append(n)
 		elif n in DAYCHANNELS:
 			day = n
+		elif n == "rule":
+			rule =True
 
 	if score==True:
 		if day!='':
@@ -48,11 +50,13 @@ def handle(sentence):
 			elif day == "tomorrow":
 				date = datetime.date.today() + datetime.timedelta(days=1)
 			date = date.strftime("%m/%d/%Y")		
-		
-		print(date)
 		if len(team)==0:
-			print("Please ask me with the teams you want to search~")	
+			print("\nPlease ask me with the teams you want to search~")	
 		else:
+			if(date==''):
+				print(" \nPlease tell me the date\n",
+						"->")
+				date = input()
 			search_score(team[0],team[1],date)
 	elif info==True or (match==False and "about" in prep):
 		if len(team)!=0:
@@ -61,9 +65,17 @@ def handle(sentence):
 			search_info(player)
 	elif match==True:
 		if len(team)==0:
-			print("Please ask me with the teams you want to search~")
+			print("\nPlease ask me with the teams you want to search~")
+		elif len(team)==1:
+			print("\nPlease tell me another team~")
 		else:
 			search_match(team[0],team[1])
+	elif rule == True:
+		print(" \n 1: team with uppercase letter\n"
+		, "2: star player name with first name lastname\n",
+		  "3: the date need to be month/day/year")
+	else:
+		print("\nsry, I can't understand what u say, Please type \"rule\" to see more details!")
 
 	
 
@@ -86,8 +98,11 @@ def classify(segments):
 		elif segment[1]=='JJ':
 			adj.append(segment[0])
 		elif segment[1]=='CD':
-			date=segment[0]
-
+			date = segment[0]
+			while re.compile(r'^\d{1,2}\/\d{1,2}\/\d{4}').match(date)==None:
+				print(" date form  wrong, Please enter the right date:\n",
+						"->")
+				date = input()			
 	if player!='':
 		player= player.rstrip()
 		noun.append(player)
@@ -104,4 +119,8 @@ def search_match(team1,team2,date):
 
 
 if __name__=='__main__':
-	handle(input())
+	print("Hello, I can help you to search for all the information about NBA. For more details, Please enter \"rule\".")
+	while True:
+		print("->")
+		handle(input())
+		print("----------------------------------------")
