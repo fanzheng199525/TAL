@@ -10,8 +10,3 @@ def rep():
 		reponse = random.choice(BACKCHANNELS)
 	record = reponse
 	return reponse
-
-# if __name__=='__main__':
-# 	while 1:
-# 		print("Your term to speak: ")
-# 		print("Rebot: ",rep(input()))
