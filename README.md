@@ -28,7 +28,7 @@ $python3 main.py
 
 ## An example of execution:
 
-After input the command python3 main.py, you will see:
+After inputing the command python3 main.py, you will see:
 <p align="left">
 <img width="50%" src="src/img/m3_1.png" />
 <br>
