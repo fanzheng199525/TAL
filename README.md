@@ -29,24 +29,24 @@ By the way, if you fail with installing the requirements, just change the name m
 An example of execution:
 After input the command python3 main.py, you will see:
 <p align="center">
-<img width="80%" src="img/m3_1.png" />
+<img width="80%" src="src/img/m3_1.png" />
 <br>
 <p align="center">
-<img width="80%" src="img/m3_2.png" />
+<img width="80%" src="src/img/m3_2.png" />
 <br>
 <p align="center">
-<img width="80%" src="img/m3_3.png" />
+<img width="80%" src="src/img/m3_3.png" />
 <br>
 <p align="center">
-<img width="80%" src="img/m3_4.png" />
+<img width="80%" src="src/img/m3_4.png" />
 <br>
 <p align="center">
-<img width="80%" src="img/m3_5.png" />
+<img width="80%" src="src/img/m3_5.png" />
 <br>
 <p align="center">
-<img width="80%" src="img/m3_6.png" />
+<img width="80%" src="src/img/m3_6.png" />
 <br>
 <p align="center">
-<img width="80%" src="img/m3_7.png" />
+<img width="80%" src="src/img/m3_7.png" />
 <br>
   
