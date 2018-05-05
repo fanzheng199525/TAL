@@ -33,7 +33,7 @@ After input the command python3 main.py, you will see:
 <br>
 First, I choose the mode 3, and input: tell me the matched on 05/03/2018
 <p align="center">
-<img width="80%" src="src/img/m3_2.png" />
+<img width="50%" src="src/img/m3_2.png" />
 <br>
 Then, I input: please tell me the score of CLE and TOR on 05/03/2018
 <p align="center">
@@ -53,6 +53,6 @@ Now, I want to say something else, I input:nice to meet you (there is a warning 
 <br>
 I want to change the mode, so I type:remode,and choose the mode 2.
 <p align="center">
-<img width="80%" src="src/img/m3_7.png" />
+<img width="50%" src="src/img/m3_7.png" />
 <br>
   
