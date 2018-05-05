@@ -24,7 +24,7 @@ $pip3 install -r requirements.txt
 
 $python3 main.py
 
-### By the way, if you fail with installing the requirements, just change the name mode33.py to mode3.py. It will work with a simple verison. 
+### By the way, if you fail with installing the requirements, just change the name mode33.py to mode3.py and replace the previous mode3.py. It will work with a simple verison. 
 
 ## An example of execution:
 
