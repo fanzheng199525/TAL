@@ -2,6 +2,7 @@ Projet TAL
 =====================================================
 
 # Tips for launching this chatbot
+(Without step3 and step4, chatbot can't repond with the general answer)
 
 ## Step 1:
 
@@ -22,3 +23,4 @@ $pip3 install -r requirements.txt
 ## Step 5:
 
 $python3 main.py
+
