@@ -44,23 +44,23 @@ Next, I want to get something about kobe bryant, i type: I want some info about 
 <p align="left">
 <img width="50%" src="src/img/m3_4.png" />
 <br>
-After that, I want to get some info about the team Houston Rocket, I type:give me some information of houston
+After that, I want to get some info about the team Houston Rocket, I type: give me some information of houston
 <p align="left">
 <img width="50%" src="src/img/m3_5.png" />
 <br>
-Now, I want to say something else, I input:nice to meet you (there is a warning about tensorflow for the first time)
+Now, I want to say something else, I input: nice to meet you (there is a warning about tensorflow for the first time)
 <p align="left">
 <img width="50%" src="src/img/m3_6.png" />
 <br>
-I want to change the mode, so I type:remode,and choose the mode 2.
+I want to change the mode, so I type: remode,and choose the mode 2.
 <p align="left">
 <img width="30%" src="src/img/m3_7.png" />
 <br>
-For testing the function of mode2, I type:A rabbit is very very happy and excited.
+For testing the function of mode2, I type: A rabbit is very very happy and excited.
 <p align="left">
 <img width="30%" src="src/img/m2_1.png" />
 <br>
-In the end, I want to exit,input:exit
+In the end, I want to exit,input: exit
 <p align="left">
 <img width="30%" src="src/img/exit.png" />
 <br>
