@@ -12,9 +12,9 @@ def main():
 	mode3.init()
 	while True:
 		my_p = input("\n-> ")
-		if re.search(r"exit ", my_p, re.I):
+		if re.match(r"exit", my_p, re.I):
 			break;
-		elif re.search(r"remode", my_p, re.I):
+		elif re.match(r"remode", my_p, re.I):
 			print("Which mode you wan to use?")
 			global_init.set_mode(int(input()))
 		else:
