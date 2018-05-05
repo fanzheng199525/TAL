@@ -2,7 +2,7 @@ Projet TAL
 =====================================================
 
 # Tips for launching this chatbot
-(Without step3 and step4, chatbot can't repond with the general answer)
+(Without step3 and step4, chatbot can't reply with the general answer)
 
 ## Step 1:
 
