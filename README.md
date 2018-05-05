@@ -24,29 +24,36 @@ $pip3 install -r requirements.txt
 
 $python3 main.py
 
-By the way, if you fail with installing the requirements, just change the name mode33.py to mode3.py. It will work with a simple verison. 
+### By the way, if you fail with installing the requirements, just change the name mode33.py to mode3.py. It will work with a simple verison. 
 
-An example of execution:
+## An example of execution:
+
 After input the command python3 main.py, you will see:
-<p align="center">
-<img width="80%" src="img/m3_1.png" />
+<p align="left">
+<img width="50%" src="src/img/m3_1.png" />
 <br>
-<p align="center">
-<img width="80%" src="img/m3_2.png" />
+First, I choose the mode 3, and input: tell me the matches on 05/03/2018
+<p align="left">
+<img width="30%" src="src/img/m3_2.png" />
 <br>
-<p align="center">
-<img width="80%" src="img/m3_3.png" />
+Then, I input: please tell me the score of CLE and TOR on 05/03/2018
+<p align="left">
+<img width="50%" src="src/img/m3_3.png" />
 <br>
-<p align="center">
-<img width="80%" src="img/m3_4.png" />
+Next, I want to get something about kobe bryant, i type: I want some info about kobe
+<p align="left">
+<img width="50%" src="src/img/m3_4.png" />
 <br>
-<p align="center">
-<img width="80%" src="img/m3_5.png" />
+After that, I want to get some info about the team Houston Rocket, I type:give me some information of houston
+<p align="left">
+<img width="50%" src="src/img/m3_5.png" />
 <br>
-<p align="center">
-<img width="80%" src="img/m3_6.png" />
+Now, I want to say something else, I input:nice to meet you (there is a warning about tensorflow for the first time)
+<p align="left">
+<img width="50%" src="src/img/m3_6.png" />
 <br>
-<p align="center">
-<img width="80%" src="img/m3_7.png" />
+I want to change the mode, so I type:remode,and choose the mode 2.
+<p align="left">
+<img width="30%" src="src/img/m3_7.png" />
 <br>
   
