@@ -6,7 +6,7 @@ import random
 import global_init
 def main():
 	print("-- Hello, I can help you to search for all the information about NBA. For more details, Please chose mode 3 and enter \"rule\".")
-	print("-- For searching score, we can't offer the result within 3days because of the strange problem of our search site")
+	print("-- For searching score, we can't offer the result within 2 days because of the strange problem of our search site")
 	mode = input("mode: ")
 	global_init.set_mode(int(mode))
 	mode3.init()
