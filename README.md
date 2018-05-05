@@ -1,7 +1,7 @@
 Projet TAL
 =====================================================
 
-# Tips for launch this chatbot
+# Tips for launching this chatbot
 
 ## Step 1:
 
