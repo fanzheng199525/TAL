@@ -2,6 +2,9 @@ import nltk
 import datetime
 import re
 import nmt_mode
+import os
+import global_init
+import mode1
 from nba_search.score import search_score
 from nba_search.match import search_match
 from nba_search.player import search_info_player
@@ -50,7 +53,6 @@ def find_team(n):
 	return False
 
 def find_player(n):
-	print(n)
 	global PLAYER
 	player = []
 	com = re.compile(n,re.I)
@@ -130,7 +132,11 @@ def handle(sentence):
 		print(
 		  "The date need to be month/day/year")
 	else:
-		nmt_mode.mode4(sentence)
+		if os.path.exists('model/translate.ckpt-81000.data-00000-of-00001'):
+			nmt_mode.mode4(sentence)
+		else:
+			global_init.minus_mode()
+			print(mode1.rep())
 
 def classify(segments):
 	noun = []
