@@ -11,7 +11,7 @@ def init_player():
 	info = re.findall(regex1,html)
 
 	for i in range(0,len(info)):
-			player_list.add(re.sub('\"','',re.sub(regex2,'',info[i])))
+			player_list.add(re.sub('\"','',re.sub(regex2,'',info[i]))) #the list from web1
 			
 	regex3 = r"\.html\"\>.+?\<\/a\>\<\/td\>\<td class\=\"left \""
 	regex4 = r"\<\/a\>\<\/td\>\<td class\=\"left \""
@@ -20,5 +20,5 @@ def init_player():
 	html2 = requests.get(url2).text
 	info1 = re.findall(regex3,html2)
 	for j in range(0,len(info1)):
-			player_list.add(re.sub(regex5,'',re.sub(regex4,'',info1[j])))
+			player_list.add(re.sub(regex5,'',re.sub(regex4,'',info1[j])))  #the list from web2
 	return player_list

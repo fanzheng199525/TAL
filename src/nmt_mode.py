@@ -20,16 +20,23 @@ import random
 
 current_stdout = None
 
+# Start inference "engine"
 def do_start_inference(out_dir, hparams):
 
     global current_stdout
     current_stdout = sys.stdout
     sys.stdout = open(os.devnull, "w")
+
+    # Modified autorun from nmt.py (bottom of the file)
+    # We want to use original argument parser
     nmt_parser = argparse.ArgumentParser()
     nmt.add_arguments(nmt_parser)
     
+    
     flags, unparsed = nmt_parser.parse_known_args(['--'+k+'='+str(v) for k,v in hparams.items()])
+    # Add output (model) folder to flags
     flags.out_dir = out_dir
+    # Make hparams
     hparams = nmt.create_hparams(flags)
 
 
@@ -37,6 +44,7 @@ def do_start_inference(out_dir, hparams):
         nmt.utils.print_out("# Model folder (out_dir) doesn't exist")
         sys.exit()
 
+    # Load hparams from model folder
     hparams = nmt.create_or_load_hparams(flags.out_dir, hparams, flags.hparams_path, save_hparams=True)
 
     if not flags.ckpt:
@@ -54,6 +62,7 @@ def do_start_inference(out_dir, hparams):
 
     return (infer_model, flags, hparams)
 
+# Inference
 def do_inference(infer_data, infer_model, flags, hparams):
 
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -64,8 +73,10 @@ def do_inference(infer_data, infer_model, flags, hparams):
 
     with tf.Session(graph=infer_model.graph, config=nmt.utils.get_config_proto()) as sess:
 
+        # Load model
         loaded_infer_model = nmt.inference.model_helper.load_model(infer_model.model, flags.ckpt, sess, "infer")
 
+        # Run model (translate)
         sess.run(
             infer_model.iterator.initializer,
             feed_dict={
@@ -73,6 +84,7 @@ def do_inference(infer_data, infer_model, flags, hparams):
                 infer_model.batch_size_placeholder: hparams.infer_batch_size
             })
 
+        # calculate number of translations to be returned
         num_translations_per_input = max(min(hparams.num_translations_per_input, hparams.beam_width), 1)
 
         answers = []
@@ -93,12 +105,15 @@ def do_inference(infer_data, infer_model, flags, hparams):
 
                         if hparams.eos: tgt_eos = hparams.eos.encode("utf-8")
 
+                        # Select a sentence
                         output = nmt_outputs[beam_id][sent_id, :].tolist()
 
+                        # If there is an eos symbol in outputs, cut them at that point
                         if tgt_eos and tgt_eos in output:
                             output = output[:output.index(tgt_eos)]
                         print(output)
 
+                        # Format response
                         if hparams.subword_option == "bpe":  
                             translation = nmt.utils.format_bpe_text(output)
                         elif hparams.subword_option == "spm":  
@@ -107,7 +122,7 @@ def do_inference(infer_data, infer_model, flags, hparams):
                             translation = nmt.utils.format_text(output)
 
                         translations.append(translation.decode('utf-8'))
-
+                    # Add response to the list
                     answers.append(translations)
 
             except tf.errors.OutOfRangeError:
@@ -120,6 +135,7 @@ def do_inference(infer_data, infer_model, flags, hparams):
         current_stdout = None
 
         return answers
+
 def start_inference(question):
 
     global inference_helper, inference_object
@@ -137,6 +153,7 @@ inference_object = None
 
 inference_helper = start_inference
 
+# Main inference function
 def inference(questions, print = False):
     os.chdir(os.path.realpath(os.path.dirname(__file__)))
 
@@ -148,17 +165,23 @@ def inference(questions, print = False):
         return answers_list[0]
     else:
         return answers_list
+
+# Internal inference function (for direct call)
 def inference_internal(questions):
     return process_questions(questions, True)
 
+# Get index and score for best answer
 def get_best_score(answers_score):
 
+    # Return first best scored response
     if score_settings['pick_random'] is None:
         max_score = max(answers_score)
         if max_score >= score_settings['bad_response_threshold']:
             return (answers_score.index(max_score), max_score)
         else:
-            return (-1, None)
+            return (-1, None)        
+
+    # Return random best scored response
     elif score_settings['pick_random'] == 'best_score':
         indexes = [index for index, score in enumerate(answers_score) if score == max(answers_score) and score >= score_settings['bad_response_threshold']]
         if len(indexes):
@@ -167,7 +190,7 @@ def get_best_score(answers_score):
         else:
             return (-1, None)
 
-   
+    # Return random response with score above threshold
     elif score_settings['pick_random'] == 'above_threshold':
         indexes = [index for index, score in enumerate(answers_score) if score > (score_settings['bad_response_threshold'] if score_settings['bad_response_threshold'] >= 0 else max(score)+score_settings['bad_response_threshold'])]
         if len(indexes):
@@ -177,8 +200,11 @@ def get_best_score(answers_score):
             return (-1, None)
 
     return (0, score_settings['starting_score'])
+
+# Process question or list of questions
 def process_questions(questions, return_score_modifiers = False):
 
+    # Make a list
     if not isinstance(questions, list):
         questions = [questions]
 
@@ -187,8 +213,10 @@ def process_questions(questions, return_score_modifiers = False):
         question = question.strip()
         prepared_questions.append(apply_bpe(tokenize(question)) if question else '##emptyquestion##')
 
+    # Run inference
     answers_list = inference_helper(prepared_questions)
-
+    
+    # Process answers
     prepared_answers_list = []
     for index, answers in enumerate(answers_list):
         answers = detokenize(answers)

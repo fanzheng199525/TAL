@@ -11,6 +11,7 @@ from nba_search.player import search_info_player
 from nba_search.team import search_info_team
 from nba_search.playerinit import init_player
 
+#init of backchannel
 TEAMCHANNELS= {"PHO":"Phoenix Suns","SAS":"San Antonio Spurs","DAL":"Dallas Mavericks","SAC":"Sacramento Kings","HOU":"Houston Rockets",
 "MEM":"Memphis Grizzlies","LAL":"L.A. Lakers","MIN":"Minnesota Timberwolves","DEN":"Denver Nuggets","LAC":"L.A. Clippers",
 "POR":"Portland Trail Blazers","UTA":"Utah Jazz","GSW":"Golden State Warriors","NOP":"New Orleans Pelicans","MIA":"Miami Heat",
@@ -25,12 +26,13 @@ DAYCHANNELS = ["yesterday","tomorrow","today"]
 TEAM = ''
 PLAYER =''
 
-
+#tokenize the sentence
 def seg(sentence):
 	tokens = nltk.word_tokenize(sentence)
 	segments = nltk.pos_tag(tokens)
 	return segments
 
+#get the date of today, yesterday, tomorrow
 def when(day, date):
 	if day!='':
 		if day == "yesterday":
@@ -42,7 +44,8 @@ def when(day, date):
 		date = date.strftime("%m/%d/%Y")
 		return date
 	return date
-	
+
+#fuzzy query of team name
 def find_team(n):
 	global TEAM
 	com = re.compile(n,re.I)
@@ -52,6 +55,7 @@ def find_team(n):
 			return True
 	return False
 
+#fuzzy query of player name
 def find_player(n):
 	global PLAYER
 	player = []
@@ -82,6 +86,7 @@ def handle(sentence):
 	player = ''
 	noun,prep,adj,date = classify(segments)
 
+#match for the nouns
 	for n in noun:
 		if n in SCORECHANNELS:
 			score = True
@@ -103,6 +108,7 @@ def handle(sentence):
 			rule =True
 	date = when(day, date)
 
+#execute the query of user
 	if score==True:
 		if len(team)==0:
 			print("\nPlease ask me with the teams you want to search~")	
@@ -139,6 +145,7 @@ def handle(sentence):
 			global_init.minus_mode()
 			print(mode1.rep())
 
+#classify the words
 def classify(segments):
 	noun = []
 	prep = []

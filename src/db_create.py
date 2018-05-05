@@ -2,22 +2,26 @@ import sqlite3
 import json
 from datetime import datetime
 
-filename = '2017-11'
-sql_transaction = []
 
+filename = '2017-11'
+#init of sql transaction
+sql_transaction = []
 
 connection = sqlite3.connect('{}.db'.format(filename))
 c = connection.cursor()
 
+#create a table of database
 def create_table():
 	c.execute("""CREATE TABLE IF NOT EXISTS parent_Reply(
 		parent_id TEXT PRIMARY KEY, parent TEXT,
 	  comment TEXT, subreddit TEXT, unix INT, score INT)""")
 
+#replace the symbol that we don't want
 def format_data(data):
 	data = data.replace('\n',' newlinechar ').replace('\r',' newlinechar ').replace('"',"'")
 	return data
 
+#filter the data that we want
 def acceptable(data):
 	if len(data.split(' '))>1000 or len(data)<1:
 		return False
@@ -30,6 +34,7 @@ def acceptable(data):
 	else:
 		return True
 
+#to find the existing score of matched topic and reply
 def find_existing_score(pid):
 	try:
 		sql = """SELECT score FROM parent_Reply WHERE parent_id = '{}' LIMIT 1""".format(pid)
@@ -40,7 +45,7 @@ def find_existing_score(pid):
 		else:return False
 	except Exception as e:
 		return False
-
+#build the transaction and execute every 1000 sql
 def transaction_bldr(sql):
 	global sql_transaction
 	sql_transaction.append(sql)
@@ -54,13 +59,14 @@ def transaction_bldr(sql):
 		connection.commit()
 		sql_transaction = []
 
+#replace the better comment
 def sql_insert_replace_comment(body, time, subreddit, score, pid):
 	try:
 		sql = """UPDATE parent_Reply SET comment = '{}', subreddit = '{}', unix = '{}', score = '{}' WHERE  parent_id = '{}';""".format(body, subreddit, int(time), score, pid)
 		transaction_bldr(sql)
 	except Exception as e:
 		print('s0 insertion', str(e))
-
+#insert the matched couple
 def sql_insert(pid, parent, body, time,subreddit,score): 
 	try:
 		sql = """INSERT INTO parent_Reply(parent_id, parent, comment, subreddit, unix, score) VALUES("{}","{}","{}","{}",{},{});""".format(pid, parent, body, subreddit, int(time), score)
@@ -76,7 +82,7 @@ if __name__=="__main__":
 	with open("/home/Download/RC_{}".format(filename),buffering = 1000) as f:
 		for row in f:
 			row_counter+=1
-			#if row_counter > start_row:
+		#read the file json and get the information
 			try:
 				row = json.loads(row)
 				parent_id = row['parent_id']

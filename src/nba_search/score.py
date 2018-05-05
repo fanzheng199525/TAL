@@ -10,7 +10,7 @@ def search_score(team1,team2,date):
 
 	score1 = str
 	score2 = str
-	for match in matchs:
+	for match in matchs:	#verify if the team that we search for is in matchs
 		dates = match.split('\"')
 		if team1 == dates[15]:
 			score1 = dates[58]

@@ -4,7 +4,7 @@ import re
 
 def search_info_team(info):
 	regex1 = r"\<p\>.+?<\/p\>"
-	regex2 = r"\<.+?\>"
+	regex2 = r"\<.+?\>"	#regular expression
 	team = info.split()
 	url = 'https://en.wikipedia.org/wiki/'
 	html = requests.get(url+team[0]+'_'+team[1]).text 

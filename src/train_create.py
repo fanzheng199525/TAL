@@ -13,7 +13,7 @@ counter = 0
 test_done = False
 
 while cur_length == limit:
-
+	#read the database and get the matched couple to build teh train set
 	df = pd.read_sql("SELECT * FROM parent_Reply WHERE unix > {} and parent NOT NULL and score > 0 ORDER BY unix ASC LIMIT {};".format(last_unix,limit), connection)
 	last_unix = df.tail(1)['unix'].values[0]
 	cur_length = len(df)
