@@ -11,7 +11,7 @@ def main():
 	global_init.set_mode(int(mode))
 	mode3.init()
 	while True:
-		my_p = input("-> ")
+		my_p = input("\n-> ")
 		if re.search(r"exit ", my_p, re.I):
 			break;
 		else:
