@@ -5,7 +5,7 @@ Projet TAL
 
 ## Step 1:
 
-https://github.com/fanzheng199525/TAL.git
+$git clone https://github.com/fanzheng199525/TAL.git
 
 ## Step 2:
 
