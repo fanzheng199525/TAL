@@ -51,7 +51,7 @@ def mode2(my_p):
 			myp_list[0]="is it"
 		if re.search(r"(you're)", my_p, re.I):
 			myp_list[0]="am I"
-		print ("Why",myp_list[0],myp_list[1],"?")
+		print ("Rebot:","Why",myp_list[0],myp_list[1],"?")
 		
 	elif re.search(r"(am |is |was |will be |has been |are |had been |have been |were )", my_p, re.I):
 		myp_list = re.split(r"(am|is|was|will be|has been|are|had been|have been|were)[ ]+", my_p, flags =re.I)
@@ -73,7 +73,7 @@ def mode2(my_p):
 				myp_list[1]="has been"
 		else:
 			myp_list[0]="he"
-		print("Why",myp_list[1],myp_list[0],myp_list[2],"?")
+		print("Rebot:","Why",myp_list[1],myp_list[0],myp_list[2],"?")
 	else:
 		flag = 0
 		for key, values in vocabulary.items():
@@ -85,7 +85,7 @@ def mode2(my_p):
 						numero[key]=num
 					else:
 						numero[key]=num
-					print(values[1][num])
+					print("Rebot: ",values[1][num])
 
 					flag = 1
 					break 
@@ -93,5 +93,5 @@ def mode2(my_p):
 				break
 		if flag == 0:
 			global_init.minus_mode()
-			print(mode1.rep())
+			print("Rebot:",mode1.rep())
 
