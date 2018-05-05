@@ -13,7 +13,7 @@ $cd chatbot1.0
 
 ## Step 3:
 
-Go to the google drive (url = https://drive.google.com/open?id=1i0ofe6_vbzmGePG2ymG_gwPDgm-FRB47) to download the file model which have our training data. And replace the file model in the file chatbot1.0
+Go to the google drive (url = https://drive.google.com/open?id=1i0ofe6_vbzmGePG2ymG_gwPDgm-FRB47) to download the file “model” which have our training data. And replace the file “model” in the file chatbot1.0
 
 ## Step 4:
 
