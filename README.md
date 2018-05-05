@@ -60,7 +60,7 @@ For testing the function of mode2, I type: A rabbit is very very happy and excit
 <p align="left">
 <img width="30%" src="src/img/m2_1.png" />
 <br>
-In the end, I want to exit,input: exit
+In the end, I want to exit, input: exit
 <p align="left">
 <img width="30%" src="src/img/exit.png" />
 <br>
