@@ -26,9 +26,10 @@ $python3 main.py
 
 By the way, if you fail with installing the requirements, just change the name mode33.py to mode3.py. It will work with a simple verison. 
 
-An example of execution:
+## An example of execution:
+
 After input the command python3 main.py, you will see:
-<p align="center">
+<p align="left">
 <img width="50%" src="src/img/m3_1.png" />
 <br>
 First, I choose the mode 3, and input: tell me the matched on 05/03/2018
