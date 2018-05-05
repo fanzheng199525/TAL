@@ -5,8 +5,8 @@ import re
 import random
 import global_init
 def main():
-	print("-- Hello, I can help you to search for all the information about NBA. For more details, Please chose mode 3 and enter \"rule\".")
-	print("-- For searching score, we can't offer the result within 2 days because of the strange problem of our search site")
+	print("-- Hello, I'm JJ!! I can help you to search for all the information about NBA. For more details, Please choose mode 3 and enter \"rule\".")
+	print("-- Input \"remode\" to modify the mode")
 	mode = input("mode: ")
 	global_init.set_mode(int(mode))
 	mode3.init()
@@ -14,6 +14,9 @@ def main():
 		my_p = input("\n-> ")
 		if re.search(r"exit ", my_p, re.I):
 			break;
+		elif re.search(r"remode", my_p, re.I):
+			print("Which mode you wan to use?")
+			global_init.set_mode(int(input()))
 		else:
 			if global_init.get_mode() == 1 :
 				print(mode1.rep())			

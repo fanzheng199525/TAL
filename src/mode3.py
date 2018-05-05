@@ -66,7 +66,7 @@ def find_player(n):
 		print("There are ",len(player),"players who have the same name")
 		for i in range(len(player)):
 			print(i,": ",player[i])
-		PLAYER = player[int(input("which one you wanna chose(give me the number)"))]	
+		PLAYER = player[int(input("which one you wanna choose(give me the number)"))]	
 		return True				
 	return False
 
@@ -130,7 +130,8 @@ def handle(sentence):
 			search_match(date)
 	elif rule == True:
 		print(
-		  "The date need to be month/day/year")
+		  " The date need to be month/day/year\n",
+		  "Attention-- For searching score, we can't offer the result within 2 days because of the strange problem of our search site")
 	else:
 		if os.path.exists('model/translate.ckpt-81000.data-00000-of-00001'):
 			nmt_mode.mode4(sentence)
