@@ -16,7 +16,7 @@ def main():
 			break;
 		else:
 			if global_init.get_mode() == 1 :
-				print("Rebot: ",mode1.rep())			
+				print(mode1.rep())			
 			if global_init.get_mode() == 2 :
 				mode2.mode2(my_p)
 			if global_init.get_mode() == 3 :
